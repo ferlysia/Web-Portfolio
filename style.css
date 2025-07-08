@@ -1,0 +1,1049 @@
+/* Import fonts at the top, just in case */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Playfair+Display:ital,wght@0,400;1,600&display=swap');
+/* Poppins for body/content text, Syne for titles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@600;700&display=swap');
+:root {
+  /* Define custom properties for gradient colors */
+  --light-gradient-start: #fefefe; /* Very light pink/purple */
+  --light-gradient-middle: #ffffff; /* A slightly deeper light pink */
+  --light-gradient-end: #e9bbd2;   /* Very light red/pink */
+
+  --dark-gradient-start: #1a0a1f;  /* Dark purple */
+  --dark-gradient-middle: #2a0f35; /* A slightly lighter dark purple */
+  --dark-gradient-end: #4d4d82;    /* Changed this back to almost black */
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Default body font */
+    background-color: var(--light-gradient-start); /* Fallback */
+    /* Updated to three color stops */
+    background: linear-gradient(135deg, var(--light-gradient-start), var(--light-gradient-middle), var(--light-gradient-end));
+    color: #000;
+    transition: background-color 0.3s, color 0.3s, background 0.3s ease;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+/* Dark mode override for the body gradient */
+.dark body {
+  background-color: var(--dark-gradient-start) !important; /* Fallback for dark mode */
+  /* Updated to three color stops for dark mode */
+  background: linear-gradient(135deg, var(--dark-gradient-start), var(--dark-gradient-middle), var(--dark-gradient-end)) !important;
+  color: white !important;
+}
+
+/* Keep these if you want specific sections to have solid backgrounds even with the body gradient */
+#home {
+    background-color: transparent; /* Changed to transparent to show body gradient */
+    height: 100vh;
+    position: relative;
+    padding: 6rem 2rem;
+}
+
+#about, #experience, #skills, #projects {
+  background-color: transparent; /* Ensure these sections also have transparent backgrounds to show the body gradient */
+}
+
+
+.portfolio-title {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    font-size: 9rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif; /* Explicitly keep Space Grotesk */
+}
+
+.ferlysia-sign {
+    position: absolute;
+    bottom: 20%;
+    right: 5%;
+    font-size: 8rem;
+    color: #f472b6;
+    font-family: 'Playfair Display', serif; /* Explicitly keep Playfair Display */
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* --- SECTION TITLE FONT CONSISTENCY --- */
+/* Apply 'Syne' font to all main section H2 titles */
+#about h2, #skills h2, #projects h2, #experience h2 {
+    font-family: 'Syne', sans-serif; /* Standardized to Syne for all section titles */
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(244, 114, 182, 0.5);
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+/* --- ABOUT ME SECTION STYLES --- */
+#about p {
+    font-family: 'Poppins', sans-serif; /* Ensure Poppins for readability in About Me */
+    /* text-align: center; This is already on the parent .about-explanation-container in HTML */
+}
+
+/* Centering and Narrowing for About Me Explanation */
+.about-explanation-container {
+    max-width: 900px; /* Adjust this value to control the width of the text block */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    padding: 0 1rem; /* Add some horizontal padding to prevent text from touching edges */
+    box-sizing: border-box; /* Include padding in width calculation */
+    /* `text-align: center` is on the HTML element itself. */
+}
+
+/* "Hi There!" Animation (Typing Effect) */
+.hi-there-animation {
+  display: inline-block; /* Essential for animation */
+  overflow: hidden; /* Hides content outside the element */
+  border-right: 0.15em solid transparent; /* Mimics a typing cursor */
+  white-space: nowrap; /* Prevents text from wrapping */
+  margin: 0; /* Remove default margin */
+  letter-spacing: 0.05em; /* Adjust as needed */
+  animation: typing 1.5s steps(12, end) forwards, blink-caret 0.75s step-end infinite;
+  font-weight: 600; /* Make it stand out */
+  color: #be185d; /* Pink color for "Hi There!" */
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #be185d; } /* Matches the hi-there color */
+}
+
+
+/* NAVBAR CENTERING (Confirmed it's correctly handled by HTML) */
+nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%; /* Ensuring it's precisely centered from left */
+  transform: translateX(-50%); /* Using transform to pull back by half its width */
+  z-index: 1000;
+  width: fit-content; /* Ensure it wraps content */
+  max-width: 90%; /* Limit max width */
+}
+
+nav > div { 
+  background-color: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(10px); 
+} 
+
+.section-heading { 
+  font-family: 'Syne', sans-serif; /* Consistent with other h2s */
+}
+
+/* Ensure project details and other general text follows the body font (Poppins) */
+.project-details-custom p {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- SKILLS SECTION (NO DESIGN CHANGES, FONT CONSISTENCY ONLY) --- */
+#skills {
+    /* Reverted to original padding and flow from initial state */
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    min-height: 100vh;
+    display: block; /* Ensures it's a block, not flex-centered as a whole section */
+    scroll-margin-top: -2rem; 
+}
+
+/* Inner content container - relies on HTML's `max-w-6xl mx-auto` */
+#skills > div:first-of-type {
+    /* No custom max-width here, let Tailwind's `max-w-6xl` (1152px) handle it. */
+    margin-left: auto; /* Center within parent */
+    margin-right: auto; /* Center within parent */
+    padding: 0 1rem; /* Ensure some horizontal padding */
+}
+
+/* Skills Grid & Cards: NO SIZE/LAYOUT CHANGES, only explicit font set */
+/* These styles ensure existing Tailwind classes `gap-6` and `p-4` are respected. */
+#skills .grid { /* Targets the grid container directly (e.g., `gap-6` from HTML) */
+  /* No explicit CSS needed here for gap or grid-template-columns. */
+}
+
+#skills .group { /* Skill card itself (e.g., `p-4` from HTML) */
+  /* No explicit padding/gap CSS needed here as Tailwind controls it. */
+}
+
+#skills .group img { /* Skill icon (e.g., `w-12 h-12` from HTML) */
+  /* No explicit width/height CSS needed here. */
+}
+
+#skills .group p { /* General paragraphs within skill cards */
+  font-family: 'Poppins', sans-serif; /* Ensure skill name and status use Poppins */
+}
+
+/* Specifically for skill name - using original Tailwind classes */
+#skills .group p:first-of-type {
+  font-family: 'Poppins', sans-serif; /* Explicitly set Poppins */
+  /* Tailwind `font-semibold` and `text-gray-800` handles style */
+}
+
+/* Specifically for skill status - using original Tailwind classes */
+#skills .group p:last-of-type {
+  font-family: 'Poppins', sans-serif; /* Explicitly set Poppins */
+  /* Tailwind `text-xs` and `text-pink-500` handles style */
+}
+
+
+/* General Section Styling */
+section:not(#home):not(#contact) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- DOWNLOAD CV BUTTON STYLING --- */
+.footer-meta a { /* Targeting the Download CV link */
+  background: linear-gradient(45deg, #f472b6, #ec4899); /* Pink gradient */
+  color: white; /* White text for contrast */
+  padding: 0.6rem 1.5rem; /* Adjusted padding for button feel */
+  border-radius: 9999px; /* Fully rounded */
+  text-decoration: none; /* Remove underline */
+  font-weight: 600; /* Bold text */
+  box-shadow: 0 4px 10px rgba(244, 114, 182, 0.4); /* Soft shadow */
+  transition: all 0.3s ease-in-out; /* Smooth transitions */
+  display: inline-flex; /* Align icon and text */
+  align-items: center;
+  gap: 0.5rem; /* Space between text and icon */
+  font-size: 0.9rem; /* Slightly larger font */
+}
+
+.footer-meta a:hover {
+  transform: translateY(-2px); /* Lift on hover */
+  box-shadow: 0 6px 15px rgba(244, 114, 182, 0.6); /* Enhanced shadow on hover */
+  background: linear-gradient(45deg, #ec4899, #f472b6); /* Subtle gradient shift */
+}
+
+/* Ensure the icon within the button also transitions */
+.footer-meta a .fas {
+  transition: transform 0.3s ease-in-out;
+}
+
+.footer-meta a:hover .fas {
+  transform: translateX(3px); /* Slide icon slightly on hover */
+}
+
+/* Dark mode adjustments for the button */
+.dark .footer-meta a {
+  background: linear-gradient(45deg, #d946ef, #be185d); /* Darker pink gradient for dark mode */
+  color: white;
+  box-shadow: 0 4px 10px rgba(217, 70, 239, 0.4);
+}
+
+.dark .footer-meta a:hover {
+  background: linear-gradient(45deg, #be185d, #d946ef);
+  box-shadow: 0 6px 15px rgba(217, 70, 239, 0.6);
+}
+
+
+/* FOOTER & PROJECT CARDS (no other changes here, they seemed fine) */
+.footer-meta {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 380px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.footer-meta img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Enhanced Project Cards */
+.project-card { /* This is from your HTML's `animate-card-glow` */
+    position: relative;
+    padding: 2rem;
+    border: 2px solid rgba(244, 114, 182, 0.2);
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(244, 114, 182, 0.02) 100%);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Project card content styling */
+.project-card h3 {
+    font-family: 'Space Grotesk', sans-serif; /* Consistent with other titles */
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.project-card p {
+    font-family: 'Poppins', sans-serif; /* Consistent text font */
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+/* Timeline/Experience section - Ensure font consistency */
+.timeline-content h3 {
+  font-family: 'Space Grotesk', sans-serif; /* Consistent title font */
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.timeline-content p, .timeline-content ul, .timeline-year {
+  font-family: 'Poppins', sans-serif; /* Consistent text font for all elements */
+}
+
+
+/* Responsive adjustments - (YOUR ORIGINAL MEDIA QUERIES) */
+@media (max-width: 768px) {
+    .social-icons-container {
+      gap: 1.5rem;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+    }
+
+    .portfolio-title {
+      font-size: 5rem;
+    }
+
+    .ferlysia-sign {
+      font-size: 4rem;
+    }
+    .footer-meta {
+      margin-top: 100px; /* Adjust spacing */
+    }
+
+    /* Skills Section on Mobile - REVERTED TO ORIGINAL SIZES */
+    /* These styles target elements within #skills, explicitly ensuring original sizes */
+    #skills .group img {
+      width: 3rem !important; /* Original w-12 h-12 is 3rem */
+      height: 3rem !important;
+    }
+    #skills .group p:first-of-type {
+      font-size: 1rem !important; /* Original text-base is 1rem */
+    }
+    #skills .group p:last-of-type {
+      font-size: 0.75rem !important; /* Original text-xs is 0.75rem */
+    }
+    #skills .grid {
+        /* Restore original Tailwind mobile grid columns and gap */
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Original min-width for mobile */
+        gap: 1.5rem !important; /* Restore original gap-6 for mobile */
+    }
+
+    /* About Me on Mobile */
+    #about .about-explanation-container {
+        max-width: 100%; /* Allow full width on mobile */
+        padding: 0 1rem;
+    }
+    #about p {
+        font-size: 0.9rem; /* Adjust paragraph font size for mobile readability */
+    }
+
+    /* Download CV button on mobile */
+    .footer-meta a {
+        padding: 0.5rem 1rem; /* Slightly smaller padding */
+        font-size: 0.8rem; /* Smaller font */
+    }
+}
+
+
+/* Theme Toggle Button Styling */
+.theme-icon-btn {
+  background: transparent;
+  color: #888;
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+.theme-icon-btn:hover {
+  color: #f472b6;
+}
+.theme-icon-btn.active-theme {
+  background-color: #f472b6;
+  color: white;
+}
+
+/* Dark mode override */
+.dark body {
+  background-color: #000 !important;
+  color: white !important;
+}
+.dark section {
+  background-color: #000 !important;
+}
+.dark .max-w-5xl {
+  background-color: transparent !important;
+}
+
+
+/* === LIGHT MODE === */
+body {
+  background-color: #fff;
+  color: #000;
+}
+#home .portfolio-title {
+  color: #000;
+}
+
+
+/* === DARK MODE === */
+.dark body,
+.dark section:not(#contact) { /* Exclude contact from dark mode section background */
+  background-color: #000 !important;
+  color: white !important;
+}
+
+/* Dark Mode: Navbar & Footer WHITE like Figma */
+.dark footer {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Dark Mode: Navbar Links Text Black */
+.dark .links a {
+  color: #000 !important;
+}
+
+/* Dark Mode: "PORTFOLIO" text white */
+.dark .portfolio-title {
+  color: white !important;
+}
+
+/* Dark Mode: Ferlysia Signature (still pink) */
+.dark .ferlysia-sign {
+  color: #f472b6;
+}
+
+/* Dark mode for social icons in footer, assuming they are within contact/footer context */
+/* Reverted to original styles based on your previous CSS, no explicit color changes here unless requested */
+.dark .social-icon {
+  background: #f9a8d4 !important; /* Example: light pink background */
+  color: #111 !important; /* Dark text */
+  border: none;
+}
+.dark .social-icon:hover {
+  background: #be185d !important; /* Deeper pink on hover */
+  color: white !important;
+}
+
+/* Section Title - Like Afrizal, Feminine Version */
+.section-heading {
+  position: relative;
+  display: inline-block;
+  font-family: 'Syne', sans-serif; /* Ensure Syne for consistency */
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(244, 114, 182, 0.3);
+}
+.section-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(to right, #f472b6, #fff);
+  animation: glow-line 2s ease-in-out infinite;
+}
+@keyframes glow-line {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Card Styling for Experience & Education */
+.exp-card-fz {
+  background: #E5E7EB;
+  border: 1px solid #000000;
+  border-radius: 1rem;
+  padding: 1.0rem;
+  transition: all 0.3s ease;
+}
+.exp-card-fz:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(244, 114, 182, 0.2);
+}
+.exp-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #be185d;
+  margin-bottom: 1rem;
+}
+.exp-card-list li {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+.dark .exp-card-fz {
+  background-color: #FED8EC;
+  color: #111;
+  border-color: transparent;
+}
+.dark .exp-card-title {
+  color: #111;
+}
+
+.glow-hover {
+  transition: all 0.4s ease;
+}
+.glow-hover:hover {
+  box-shadow:
+    0 15px 35px rgba(244, 114, 182, 0.2),
+    0 0 50px rgba(244, 114, 182, 0.15),
+    0 0 80px rgba(244, 114, 182, 0.08);
+}
+
+/* Glow effect on hover (light + dark mode) */
+.animate-card-glow {
+  transition: box-shadow 0.5s ease-in-out, transform 0.3s ease;
+}
+
+.animate-card-glow:hover {
+  box-shadow: 0 0 20px rgba(244, 114, 182, 0.4), 0 0 60px rgba(244, 114, 182, 0.2);
+  transform: scale(1.02);
+}
+
+/* Fix background in dark mode */
+@media (prefers-color-scheme: dark) {
+  .dark .animate-card-glow {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .dark .animate-card-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 192, 203, 0.2), 0 0 40px rgba(255, 192, 203, 0.1);
+  }
+}
+
+/* Afrizal-style Floating Transparent Navbar */
+nav {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%; /* Ensuring it's precisely centered from left */
+    transform: translateX(-50%); /* Using transform to pull back by half its width */
+    z-index: 1000;
+    width: fit-content;
+    max-width: 90%;
+}
+
+/* New: Apply background and backdrop-filter to the inner div */
+nav > div {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+/* New: Dark mode for the inner div's background */
+.dark nav > div {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* New: Adjust link colors explicitly and add underline effect */
+nav a {
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s;
+  position: relative;
+  text-decoration: none;
+}
+
+/* Underline effect for nav links */
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #f472b6;
+  transition: width 0.3s ease-out;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Dark mode for link text color */
+.dark nav a {
+  color: black !important;
+}
+
+.dark nav a:hover {
+  color: #f472b6;
+}
+
+/* Active Navigation Link Styling */
+.active-nav-link {
+    color: #f472b6 !important;
+    font-weight: 700;
+}
+
+.active-nav-link::after {
+    width: 100% !important;
+    background-color: #f472b6 !important;
+}
+
+/* Tambahan: Pastikan hover tidak menimpa active-nav-link */
+/* Jika link aktif, hover tidak mengubah warnanya kembali ke default nav a */
+.active-nav-link:hover {
+    color: #f472b6 !important;
+}
+
+/* Jika link aktif, hover tidak menghilangkan underlinenya */
+.active-nav-link:hover::after {
+    width: 100% !important;
+}
+
+/* Tambahan: Dark mode untuk active-nav-link */
+.dark .active-nav-link {
+    color: #f472b6 !important;
+}
+
+.dark .active-nav-link:hover {
+    color: #f472b6 !important;
+}
+
+/* Change "Recent Projects" text color based on theme */
+/* Light Mode */
+#projects h2 {
+    color: #000;
+}
+
+/* Dark Mode */
+.dark #projects h2 {
+    color: #fff !important;
+}
+
+/* Change "About Me" explanation text color based on theme */
+/* Light Mode */
+#about p {
+    color: #000;
+}
+
+/* Dark Mode */
+.dark #about p {
+    color: #fff !important;
+}
+
+.timeline-container {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #be185d;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-entry {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.timeline-entry.left {
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.timeline-entry.right {
+  justify-content: flex-end;
+  text-align: left;
+}
+
+.timeline-entry .timeline-icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: #be185d;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-entry.left .timeline-card {
+  margin-right: auto;
+  margin-left: 0;
+  max-width: 40%;
+}
+
+.timeline-entry.right .timeline-card {
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 40%;
+}
+
+@media (max-width: 768px) {
+  .timeline-entry,
+  .timeline-entry.left,
+  .timeline-entry.right {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .timeline-entry .timeline-card {
+    max-width: 90%;
+    margin: 2rem 0 0 0 !important;
+  }
+  .timeline-entry .timeline-icon {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+}
+
+/* --- FOOTER STYLES (MODIFIED) --- */
+
+/* Ensure the contact section has the specified background color, which acts as the footer. */
+#contact {
+  background-color: #111827;
+  color: white;
+  padding: 5rem 2rem;
+}
+
+/* Light mode footer (contact section) */
+#contact:not(.dark) {
+    background-color: #000;
+    color: white;
+}
+
+/* Dark mode footer (contact section) */
+.dark #contact {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+/* Adjust colors for elements inside the contact section for dark mode */
+.dark #contact h2,
+.dark #contact h3,
+.dark #contact p,
+.dark #contact li,
+.dark #contact a {
+    color: #000 !important;
+}
+
+.dark #contact .text-pink-400 {
+    color: #be185d !important;
+}
+
+.dark #contact .border-pink-400 {
+    border-color: #be185d !important;
+}
+
+/* Style for form elements in dark mode (on white background) */
+.dark #contact input,
+.dark #contact textarea {
+    background-color: #e5e7eb !important;
+    color: #000 !important;
+    border-color: #9ca3af !important;
+    border-radius: 0.5rem;
+}
+
+.dark #contact input::placeholder,
+.dark .contact-form-elements::placeholder { /* Assuming a class for form elements */
+    color: #6b7280;
+}
+
+
+/* Style for form button in dark mode */
+.dark #contact button {
+    background-color: #be185d !important;
+    color: white !important;
+}
+/* Keep this general rule, as it correctly sets transparency for all these sections */
+#about, #experience, #skills, #projects {
+  background-color: transparent; /* Ensures they show the body gradient */
+}
+
+/* --- Experience & Education Section (Timeline) Styles --- */
+
+/* Base font for the section content */
+#experience {
+  font-family: 'Poppins', sans-serif;
+  /* REMOVE the background-color: #ffffff; line from here */
+  color: #333; /* Keep other styles you want */
+}
+
+.dark #experience {
+  /* REMOVE the background-color: #ffffff; line from here */
+  color: #333; /* Keep other styles you want for dark mode */
+}
+
+/* Section Title - "EXPERIENCES" */
+.section-title {
+  font-family: 'Syne', sans-serif; /* Consistent with other h2s */
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin: 0;
+}
+
+.dark .section-title {
+  color: #ffffff;
+}
+
+/* Timeline Container */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 5px;
+}
+
+/* The vertical line in the timeline */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: #e0e0e0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+  z-index: 1;
+}
+
+.dark .timeline::after {
+  background-color: #555;
+}
+
+/* Individual Timeline Item */
+.timeline-item {
+  padding: 5px 0;
+  position: relative;
+  width: 50%;
+  z-index: 2;
+}
+
+/* Content block styles (the dark rectangles) */
+.timeline-content {
+  padding: 10px 15px;
+  background-color: #2c2c2c;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  font-family: 'Poppins', sans-serif; /* Consistent text font */
+  font-size: 0.8rem;
+}
+
+/* Underline for H3 titles within content blocks */
+.timeline-content h3 {
+  font-family: 'Space Grotesk', sans-serif; /* Consistent title font */
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Timeline content paragraphs, lists, and year */
+.timeline-content p, .timeline-content ul, .timeline-year {
+  font-family: 'Poppins', sans-serif; /* Consistent text font for all elements */
+}
+
+/* Arrow for content blocks */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  border: medium solid transparent;
+  border-width: 6px;
+}
+
+/* Left side timeline items (content on the left) */
+.timeline-item.left {
+  left: 0;
+  padding-right: 0;
+}
+
+.timeline-item.left .timeline-content {
+  margin-right: 40px;
+  margin-left: auto;
+}
+
+.timeline-item.left .timeline-content::before {
+  left: 100%;
+  border-left-color: #2c2c2c;
+}
+
+/* Right side timeline items (content on the right) */
+.timeline-item.right {
+  left: 50%;
+  padding-left: 0;
+}
+
+.timeline-item.right .timeline-content {
+  margin-left: 40px;
+  margin-right: auto;
+}
+
+.timeline-item.right .timeline-content::before {
+  right: 100%;
+  border-right-color: #2c2c2c;
+}
+
+/* Timeline dot (the circle with the icon) */
+.timeline-dot {
+  width: 32px;
+  height: 32px;
+  background-color: #2c2c2c;
+  border: 3px solid #ff68c7;
+  border-radius: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  flex-shrink: 0;
+  position: absolute;
+  top: 20px;
+}
+
+/* Position dots for left and right items */
+.timeline-item.left .timeline-dot {
+  right: -16px;
+}
+
+.timeline-item.right .timeline-dot {
+  left: -16px;
+}
+
+/* Year text (e.g., 2024-present) */
+.timeline-year {
+  font-family: 'Poppins', sans-serif; /* Consistent text font */
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  position: absolute;
+  top: 23px;
+}
+
+.dark .timeline-year {
+  color: #333;
+}
+
+/* Position year text for left and right items (outer alignment) */
+.timeline-item.left .timeline-year {
+  right: calc(100% + -470px);
+  left: auto;
+  text-align: right;
+}
+
+.timeline-item.right .timeline-year {
+  left: calc(100% + -500px);
+  right: auto;
+  text-align: left;
+}
+/* Dark mode for timeline year text */
+.dark .timeline-year {
+  color: white !important; /* Change to white in dark mode */
+}
+
+/* Responsive styles for smaller screens (e.g., mobile) */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 10px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+  }
+
+  /* Adjust dot position for all items on mobile */
+  .timeline-dot {
+    left: -6px;
+    top: 20px;
+  }
+
+  /* Adjust year text position for all items on mobile */
+  .timeline-year {
+    font-size: 0.75rem;
+    left: 25px;
+    top: 23px;
+    right: auto;
+  }
+
+  /* Adjust content block margin for mobile */
+  .timeline-item.left .timeline-content,
+  .timeline-item.right .timeline-content {
+    margin-left: 40px;
+    margin-right: 0;
+  }
+
+  /* Adjust arrow position for all items on mobile */
+  .timeline-item.left .timeline-content::before,
+  .timeline-item.right .timeline-content::before {
+    left: 30px;
+    border-right-color: transparent;
+    border-left-color: #2c2c2c;
+  }
+
+    /* Skills Section on Mobile - REVERTED TO ORIGINAL SIZES */
+    /* These styles target elements within #skills, explicitly ensuring original sizes */
+    #skills .group img {
+      width: 3rem !important; /* Original w-12 h-12 is 3rem */
+      height: 3rem !important;
+    }
+    #skills .group p:first-of-type {
+      font-size: 1rem !important; /* Original text-base is 1rem */
+    }
+    #skills .group p:last-of-type {
+      font-size: 0.75rem !important; /* Original text-xs is 0.75rem */
+    }
+    #skills .grid {
+        /* Restore original Tailwind mobile grid columns and gap */
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Original min-width for mobile */
+        gap: 1.5rem !important; /* Restore original gap-6 for mobile */
+    }
+
+    /* About Me on Mobile */
+    #about .about-explanation-container {
+        max-width: 100%; /* Allow full width on mobile */
+        padding: 0 1rem;
+    }
+    #about p {
+        font-size: 0.9rem; /* Adjust paragraph font size for mobile readability */
+    }
+
+    /* Download CV button on mobile */
+    .footer-meta a {
+        padding: 0.5rem 1rem; /* Slightly smaller padding */
+        font-size: 0.8rem; /* Smaller font */
+    }
+}
