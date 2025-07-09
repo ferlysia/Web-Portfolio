@@ -96,7 +96,6 @@ body {
   display: inline-block; /* Essential for animation */
   overflow: hidden; /* Hides content outside the element */
   border-right: 0.15em solid transparent; /* Mimics a typing cursor */
-  white-space: nowrap; /* Prevents text from wrapping */
   margin: 0; /* Remove default margin */
   letter-spacing: 0.05em; /* Adjust as needed */
   animation: typing 1.5s steps(12, end) forwards, blink-caret 0.75s step-end infinite;
@@ -941,7 +940,6 @@ nav a:hover::after {
   font-family: 'Poppins', sans-serif; /* Consistent text font */
   font-size: 0.8rem;
   font-weight: 600;
-  white-space: nowrap;
   position: absolute;
   top: 23px;
 }
