@@ -21,10 +21,14 @@
 
 <body class="transition-colors duration-300 bg-white dark:bg-black">
 
+<!-- ======================= -->
+<!--        NAVBAR           -->
+<!-- ======================= -->
 <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
   <div class="inline-flex justify-center gap-6 items-center bg-black/60 dark:bg-white/60 backdrop-blur-md text-white dark:text-black rounded-full px-6 py-2 shadow-xl transition-all duration-300 font-space text-sm md:text-base" style="white-space: nowrap;">
     <a href="#home" class="hover:text-ferlysia-pink transition">Home</a>
     <a href="#about" class="hover:text-ferlysia-pink transition">About</a>
+    <a href="#experience" class="hover:text-ferlysia-pink transition">Experiences</a>
     <a href="#skills" class="hover:text-ferlysia-pink transition">Skills</a>
     <a href="#projects" class="hover:text-ferlysia-pink transition">Projects</a>
     <a href="#contact" class="hover:text-ferlysia-pink transition">Contact</a>
@@ -32,8 +36,9 @@
 </nav>
 
 
-
-
+<!-- ======================= -->
+<!--        HOME SECTION     -->
+<!-- ======================= -->
 <section id="home" class="relative bg-white dark:bg-black transition-colors duration-300"> <div class="absolute top-24 right-8 z-50" data-aos="fade-down">
     <div id="theme-toggle-btns" class="flex gap-1 bg-white dark:bg-zinc-800 border dark:border-zinc-600 p-1 px-3 rounded-full shadow-md transition-all duration-300">
       <button data-theme="light" class="theme-icon-btn" title="Light Mode">
@@ -56,6 +61,10 @@
   </div>
 </section>
 
+
+<!-- ======================= -->
+<!--       ABOUT SECTION     -->
+<!-- ======================= -->
 <section id="about" class="px-6 py-20 bg-white dark:bg-black text-black dark:text-white">
   <div class="max-w-6xl mx-auto">
     <h2 class="text-4xl font-bold mb-10 text-ferlysia-pink text-center" data-aos="fade-down">ABOUT ME</h2>
@@ -75,49 +84,142 @@
 </section>
 
 
-<section id="experience" class="py-20 px-6 bg-white dark:bg-black text-black dark:text-white">
+<!-- ================================ -->
+<!--    EXPERIENCE & EDUCATION TABS   -->
+<!-- ================================ -->
+<!-- Experience Section -->
+<section id="experience" class="py-20 px-6 bg-white dark:bg-black text-black dark:text-white" x-data="{ activeTimelineTab: 'education' }">
   <div class="max-w-6xl mx-auto">
-    <h2 class="section-title text-center mb-16" data-aos="fade-down">EXPERIENCES</h2>
+    <h2 class="text-4xl font-bold mb-10 text-ferlysia-pink text-center" data-aos="fade-down">EXPERIENCES</h2>
 
-    <div class="timeline">
-      <div class="timeline-item left" data-aos="fade-right" data-aos-delay="50">
-        <div class="timeline-content">
-          <h3 class="font-bold text-lg">President University</h3>
-          <p class="text-sm font-semibold">Bachelor’s Degree in Information Technology</p>
-          <p class="text-xs">Indonesia</p>
-          <ul class="text-xs mt-2 list-disc pl-4">
-            <li>Minor in Cybersecurity</li>
-            <li>Relevant Coursework: System Security, Network Fundamentals, Database, Software Engineering</li>
-          </ul>
-        </div>
-        <div class="timeline-dot">
-          <i class="fas fa-graduation-cap"></i>
-        </div>
-        <div class="timeline-year">2023-2026</div>
-      </div>
+    <!-- Toggle Buttons -->
+    <div class="flex justify-center mb-16 gap-4">
+      <button 
+        @click="activeTimelineTab = 'education'"
+        :class="activeTimelineTab === 'education' ? 'bg-pink-600 text-white' : 'bg-white text-black border border-pink-500 dark:bg-zinc-800 dark:text-white dark:border-pink-500'"
+        class="px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 hover:bg-pink-500 hover:text-white dark:hover:bg-pink-700"
+      >
+        <i class="fas fa-graduation-cap text-base"></i> Education
+      </button>
 
-      <div class="timeline-item right" data-aos="fade-left" data-aos-delay="150">
-        <div class="timeline-content">
-          <h3 class="font-bold text-lg">PT. Tribangun Usaha Persada</h3>
-          <p class="text-sm font-semibold">Freelance Administrative & Design Assistant</p>
-          <p class="text-xs">Indonesia</p>
-          <ul class="text-xs mt-2 list-disc pl-4">
-            <li>Manage daily and weekly reports, meeting schedules, and technician engineer documentation remotely </li>
-            <li>Created visual materials such as diagrams, report layouts, and infographics using Canva and Microsoft Office.</li>
-            <li>Gained freelance experience through paid tasks while continuing university studies.</li>
+      <button 
+        @click="activeTimelineTab = 'professional'"
+        :class="activeTimelineTab === 'professional' ? 'bg-pink-600 text-white' : 'bg-white text-black border border-pink-500 dark:bg-zinc-800 dark:text-white dark:border-pink-500'"
+        class="px-3 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 hover:bg-pink-500 hover:text-white dark:hover:bg-pink-700"
+      >
+        <i class="fas fa-briefcase text-base"></i> Professional
+      </button>
+    </div>
 
-          </ul>
+    <!-- Timeline Wrapper -->
+    <div class="relative">
+      <div class="absolute left-1/2 top-0 h-full w-1 bg-pink-300 dark:bg-pink-500 transform -translate-x-1/2"></div>
+
+      <!-- Education Timeline -->
+      <template x-if="activeTimelineTab === 'education'">
+        <div>
+          <!-- Item 1 -->
+          <div class="mb-16 flex flex-col md:flex-row items-center md:items-start" data-aos="fade-right">
+            <div class="md:w-1/2 md:pr-8 text-right md:text-left">
+              <div class="bg-black dark:bg-zinc-900 text-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-lg font-bold">President University</h3>
+                <p class="text-sm text-pink-400">Aug 2023 – Present</p>
+                <p class="mt-2 text-sm">Bachelor of Computer Science (Cybersecurity)</p>
+                <ul class="list-disc text-sm pl-5 mt-2">
+                  <li>Ethical Hacking, Network Security, Secure Web Dev</li>
+                  <li>Tools: Metasploit, Burp Suite, Wireshark</li>
+                </ul>
+              </div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white z-10 border-4 border-white dark:border-black mx-4 mt-6 md:mt-0">🎓</div>
+            <div class="md:w-1/2"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="mb-16 flex flex-col md:flex-row items-center md:items-start" data-aos="fade-left">
+            <div class="md:w-1/2"></div>
+            <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white z-10 border-4 border-white dark:border-black mx-4 mt-6 md:mt-0">🏫</div>
+            <div class="md:w-1/2 md:pl-8 text-left">
+              <div class="bg-black dark:bg-zinc-900 text-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-lg font-bold">SMAN 8 Pekanbaru</h3>
+                <p class="text-sm text-pink-400">Aug 2020 – May 2023</p>
+                <p class="mt-2 text-sm">Science Major – Senior High School</p>
+                <ul class="list-disc text-sm pl-5 mt-2">
+                  <li>Final Grade: 90.75</li>
+                  <li>Science competitions & team projects</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="timeline-dot">
-          <i class="fas fa-briefcase"></i>
+      </template>
+
+      <!-- Professional Timeline -->
+      <template x-if="activeTimelineTab === 'professional'">
+        <div>
+          <!-- Item 1 -->
+          <div class="mb-16 flex flex-col md:flex-row items-center md:items-start" data-aos="fade-right">
+            <div class="md:w-1/2 md:pr-8 text-right md:text-left">
+              <div class="bg-black dark:bg-zinc-900 text-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-lg font-bold">PT Square Gate One</h3>
+                <p class="text-sm text-pink-400">Mar 2025 – May 2025</p>
+                <p class="mt-2 text-sm">Cybersecurity Risk Analyst – CashE App</p>
+                <ul class="list-disc text-sm pl-5 mt-2">
+                  <li>Performed ISO/IEC 27005 threat analysis</li>
+                  <li>Created risk matrix for mobile fintech launch</li>
+                </ul>
+                <a href="https://bit.ly/RiskAnalysisReportfortheLaunchofCashE" target="_blank" class="text-xs text-pink-400 mt-2 inline-block">
+                  <i class="fas fa-file-pdf mr-1"></i> Cyber Project PDF
+                </a>
+              </div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white z-10 border-4 border-white dark:border-black mx-4 mt-6 md:mt-0">💼</div>
+            <div class="md:w-1/2"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="mb-16 flex flex-col md:flex-row items-center md:items-start" data-aos="fade-left">
+            <div class="md:w-1/2"></div>
+            <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white z-10 border-4 border-white dark:border-black mx-4 mt-6 md:mt-0">🌿</div>
+            <div class="md:w-1/2 md:pl-8 text-left">
+              <div class="bg-black dark:bg-zinc-900 text-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-lg font-bold">Junior Eco Warrior</h3>
+                <p class="text-sm text-pink-400">Jun 2024 – Aug 2024</p>
+                <p class="mt-2 text-sm">Project Manager – Environmental Campaign</p>
+                <ul class="list-disc text-sm pl-5 mt-2">
+                  <li>Led youth team for waste education</li>
+                  <li>Handled event management and reporting</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="mb-16 flex flex-col md:flex-row items-center md:items-start" data-aos="fade-right">
+            <div class="md:w-1/2 md:pr-8 text-right md:text-left">
+              <div class="bg-black dark:bg-zinc-900 text-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-lg font-bold">PT. Tribangun Usaha Persada</h3>
+                <p class="text-sm text-pink-400">2024 – Present</p>
+                <p class="mt-2 text-sm">Freelance Admin & Designer</p>
+                <ul class="list-disc text-sm pl-5 mt-2">
+                  <li>Created spreadsheets, branding slides & visuals</li>
+                  <li>Designed client proposals via Canva</li>
+                </ul>
+              </div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white z-10 border-4 border-white dark:border-black mx-4 mt-6 md:mt-0">🧾</div>
+            <div class="md:w-1/2"></div>
+          </div>
         </div>
-        <div class="timeline-year">2024-Present</div>
-      </div>
+      </template>
     </div>
   </div>
 </section>
 
 
+<!-- ======================= -->
+<!--       SKILLS SECTION    -->
+<!-- ======================= -->
 <section id="skills" class="px-5 py-10 md:px-12 md:py-16" x-data="skills">
   <div class="text-3xl font-bold text-pink-500 mb-8 flex items-center" data-aos="fade-right">
     <span class="border-b-4 border-pink-300 pb-1">Skills</span>
@@ -189,7 +291,9 @@
 
 
 
-
+<!-- ======================= -->
+<!--      PROJECTS SECTION   -->
+<!-- ======================= -->
 <section id="projects" class="px-6 py-20 bg-white dark:bg-black">
   <div class="max-w-5xl mx-auto">
 
@@ -292,7 +396,9 @@
 </section>
 
 
-
+<!-- ======================= -->
+<!--      CONTACT SECTION    -->
+<!-- ======================= -->
 <section id="contact" class="bg-zinc-900 text-white px-6 py-20" data-aos="fade-up">
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
     

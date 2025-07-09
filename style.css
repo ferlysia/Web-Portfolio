@@ -440,7 +440,6 @@ body {
   color: white !important;
 }
 
-/* Section Title - Like Afrizal, Feminine Version */
 .section-heading {
   position: relative;
   display: inline-block;
@@ -529,7 +528,7 @@ body {
   }
 }
 
-/* Afrizal-style Floating Transparent Navbar */
+/* -style Floating Transparent Navbar */
 nav {
     position: fixed;
     top: 1.5rem;
